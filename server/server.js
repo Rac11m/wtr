@@ -25,7 +25,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.post("/contact-us", (req, res) => {
-  const { firstName, lastName, phone, repair, about } = req.body;
+  const { firstName, lastName, phone, repair, model, problem, about } =
+    req.body;
   const file = req.file;
 
   let transporter = nodemailer.createTransport({
@@ -52,7 +53,9 @@ app.post("/contact-us", (req, res) => {
       <p><strong>First Name:</strong> ${firstName}</p>
       <p><strong>Last Name:</strong> ${lastName}</p>
       <p><strong>Phone Number:</strong> ${phone}</p>
-      <p><strong>Type of Repair:</strong> ${repair}</p>
+      <p><strong>Device:</strong> ${repair}</p>
+      <p><strong>Model:</strong> ${model}</p>
+      <p><strong>Issue:</strong> ${problem}</p>
       <p><strong>About Problem:</strong> ${about}</p>
     `,
     attachments: file
